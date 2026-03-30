@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:vocab_drawer/data/models/page_model.dart';
 import 'package:vocab_drawer/data/user_prefs.dart';
