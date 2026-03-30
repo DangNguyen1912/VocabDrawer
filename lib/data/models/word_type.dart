@@ -24,6 +24,6 @@ enum WordType {
   article;
 
   String get displayName {
-    return name.toUpperCase();
+    return name[0].toUpperCase() + name.substring(1);
   }
 }
