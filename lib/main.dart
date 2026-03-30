@@ -1,12 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:vocab_drawer/data/user_prefs.dart';
-import 'package:vocab_drawer/views/page_manager.dart';
+import 'package:vocab_drawer/views/screen_manager.dart';
+import 'package:vocab_drawer/data/models/word.dart';
+import 'package:vocab_drawer/data/models/word_type.dart';
+import 'package:vocab_drawer/data/models/language.dart';
 
 ValueNotifier<ThemeMode> currentModeNotifier = ValueNotifier(ThemeMode.system);
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await UserPrefs.init();
+  await Hive.initFlutter();
+
+  Hive.registerAdapter(WordAdapter());
+  Hive.registerAdapter(WordTypeAdapter());
+  Hive.registerAdapter(LanguageAdapter());
+
+  await Hive.openBox<Word>('words');
+  await Hive.openBox<Map>('wordSets');
+
   currentModeNotifier.value = UserPrefs.isDarkMode()
       ? ThemeMode.dark
       : ThemeMode.light;
