@@ -22,7 +22,6 @@ class MyApp extends StatelessWidget {
     return ValueListenableBuilder(
       valueListenable: currentModeNotifier,
       builder: (context, currentMode, child) {
-        print(currentMode);
         return MaterialApp(
           title: 'Vocab Drawer',
           debugShowCheckedModeBanner: false,

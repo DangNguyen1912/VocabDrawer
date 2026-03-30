@@ -14,7 +14,6 @@ class UserPrefs {
   }
 
   static Future<void> setDarkMode(bool isDark) async {
-    print(isDark);
     await _prefs?.setBool('is_dark_mode', isDark);
     currentModeNotifier.value = UserPrefs.isDarkMode()
         ? ThemeMode.dark
