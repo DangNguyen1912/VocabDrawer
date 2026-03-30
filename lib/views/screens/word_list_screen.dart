@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:vocab_drawer/data/models/word.dart';
-import 'package:vocab_drawer/services/hive_service.dart';
+import 'package:vocab_drawer/views/screens/add_word_screen.dart';
 
 class WordListScreen extends StatelessWidget {
-  final HiveService _hiveService = HiveService();
+  const WordListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +34,15 @@ class WordListScreen extends StatelessWidget {
             },
           );
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AddWordScreen()),
+          );
+        },
+        child: Icon(Icons.add),
       ),
     );
   }

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:vocab_drawer/data/models/word_type.dart';
-import 'package:vocab_drawer/main.dart';
 import 'package:vocab_drawer/services/hive_service.dart';
 
 class AddWordScreen extends StatefulWidget {
+  const AddWordScreen({super.key});
+
   @override
   _AddWordScreenState createState() => _AddWordScreenState();
 }
@@ -12,7 +13,6 @@ class _AddWordScreenState extends State<AddWordScreen> {
   final HiveService _hiveService = HiveService();
   final _formKey = GlobalKey<FormState>();
 
-  // Controllers
   final _wordController = TextEditingController();
   final _translationController = TextEditingController();
   WordType _selectedType = WordType.noun;
@@ -38,7 +38,7 @@ class _AddWordScreenState extends State<AddWordScreen> {
                 decoration: InputDecoration(labelText: 'Translation'),
               ),
               DropdownButtonFormField<WordType>(
-                value: _selectedType,
+                initialValue: _selectedType,
                 items: WordType.values.map((type) {
                   return DropdownMenuItem(
                     value: type,
@@ -54,18 +54,20 @@ class _AddWordScreenState extends State<AddWordScreen> {
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () async {
+                  void notifyNPop() {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Word added successfully!')),
+                    );
+                    Navigator.pop(context);
+                  }
+
                   if (_formKey.currentState!.validate()) {
                     await _hiveService.addWord(
                       word: _wordController.text,
                       wordTranslate: _translationController.text,
                       wordType: _selectedType,
                     );
-
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Word added successfully!')),
-                    );
-
-                    Navigator.pop(context);
+                    notifyNPop();
                   }
                 },
                 child: Text('Save Word'),

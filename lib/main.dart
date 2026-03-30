@@ -5,6 +5,7 @@ import 'package:vocab_drawer/views/screen_manager.dart';
 import 'package:vocab_drawer/data/models/word.dart';
 import 'package:vocab_drawer/data/models/word_type.dart';
 import 'package:vocab_drawer/data/models/language.dart';
+import 'package:vocab_drawer/views/screens/word_list_screen.dart';
 
 ValueNotifier<ThemeMode> currentModeNotifier = ValueNotifier(ThemeMode.system);
 
@@ -54,7 +55,8 @@ class MyApp extends StatelessWidget {
             ),
           ),
           themeMode: currentMode,
-          home: PageManager(),
+          // home: PageManager(),
+          home: WordListScreen(),
         );
       },
     );
