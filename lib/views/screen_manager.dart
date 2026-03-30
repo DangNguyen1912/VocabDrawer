@@ -4,7 +4,7 @@ import 'package:vocab_drawer/data/models/page_model.dart';
 import 'package:vocab_drawer/data/user_prefs.dart';
 import 'package:vocab_drawer/widgets/app_bar_widget.dart';
 import 'package:vocab_drawer/views/screens/test.dart';
-import 'package:vocab_drawer/views/screens/volcabulary_page.dart';
+import 'package:vocab_drawer/views/screens/volcabulary_screen.dart';
 import 'package:vocab_drawer/widgets/navigation_bar_widget.dart';
 
 class PageManager extends StatelessWidget {
