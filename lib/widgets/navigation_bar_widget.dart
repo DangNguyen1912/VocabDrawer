@@ -10,28 +10,35 @@ class NavigationBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int currentPageIndex = currentPageIndexNovifier.value;
-    return NavigationBar(
-      onDestinationSelected: (int index) {
-        currentPageIndexNovifier = ValueNotifier(index);
-        currentPageIndex = index;
-      },
-      indicatorColor: Theme.of(context).colorScheme.primary,
-      selectedIndex: currentPageIndex,
-      destinations: pages
-          .map(
-            (page) => NavigationDestination(
-              icon: Icon(
-                page.icon,
-                color: Theme.of(context).colorScheme.primary,
+    return ClipRRect(
+      borderRadius: const BorderRadius.only(
+        topLeft: Radius.circular(10),
+        topRight: Radius.circular(10),
+      ),
+
+      child: NavigationBar(
+        onDestinationSelected: (int index) {
+          currentPageIndexNovifier = ValueNotifier(index);
+          currentPageIndex = index;
+        },
+        indicatorColor: Theme.of(context).colorScheme.primary,
+        selectedIndex: currentPageIndex,
+        destinations: pages
+            .map(
+              (page) => NavigationDestination(
+                icon: Icon(
+                  page.icon,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+                selectedIcon: Icon(
+                  page.icon,
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
+                label: page.name,
               ),
-              selectedIcon: Icon(
-                page.icon,
-                color: Theme.of(context).colorScheme.onPrimary,
-              ),
-              label: page.name,
-            ),
-          )
-          .toList(),
+            )
+            .toList(),
+      ),
     );
   }
 }

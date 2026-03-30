@@ -20,6 +20,15 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         title,
         style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
       ),
+      actions: [
+        IconButton(
+          icon: Icon(Icons.menu),
+          tooltip: 'Open settings menu', // Changes the descriptive text
+          onPressed: () {
+            Scaffold.of(context).openEndDrawer();
+          },
+        ),
+      ],
     );
   }
 }
